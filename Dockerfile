@@ -9,7 +9,9 @@ RUN apk --update add nginx tzdata mysql mysql-client php php-mysql php-fpm git c
 RUN mkdir -p /moess
 RUN git clone https://github.com/monoking/moeSS.git /moess
 COPY nginx.conf /etc/nginx/nginx.conf
+COPY startup.sh /startup.sh
+WORKDIR /moess
 
 EXPOSE 80 3306
 
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["/startup.sh"]
