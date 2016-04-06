@@ -1,7 +1,7 @@
 FROM alpine
 MAINTAINER Lyndon Li <snakeliwei@qq.com>
 
-RUN apk --update add nginx tzdata mysql mysql-client php php-mysql php-fpm git curl \
+RUN apk --update add nginx tzdata php php-mysql php-fpm git curl \
     && cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime \
     && apk del tzdata \
     && rm -rf /var/cache/apk/* 
@@ -12,6 +12,6 @@ COPY nginx.conf /etc/nginx/nginx.conf
 COPY startup.sh /startup.sh
 WORKDIR /moess
 
-EXPOSE 80 3306
+EXPOSE 80 443
 
 CMD ["/startup.sh"]
